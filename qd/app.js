@@ -38,7 +38,7 @@ function GetDB() {
       pump.style.background = 'red';
     }
   });
-  logData(Math.round(_t*100)/100, _h, _p);
+  // logData(Math.round(_t*100)/100, _h, _p);
   setTimeout(GetDB, 500);
 }
 
