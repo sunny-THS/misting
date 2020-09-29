@@ -24,24 +24,20 @@ function logData(t, h, p) {
 function GetDB() {
   firebase.database().ref().once('value').then(function(snapshot) {
     console.log(snapshot.val());
+    _t = snapshot.val().NhietDo;
+    temperature.textContent = `${Math.round(db.NhietDo*100)/100} ᵒC`;
+
+    _h = snapshot.val().DoAm;
+    humidity.textContent = `${db.DoAm} %`;
+
+    _p = snapshot.val().PumpIsWork;
+    if (db.PumpIsWork == 1) {
+      pump.style.background = 'green';
+    } else {
+      pump.style.background = 'red';
+    }
+    logData(Math.round(_t * 100) / 100, _h, _p);
   });
-  // fetch(API_URL)
-  //   .then(res => res.json())
-  //   .then(db => {
-  //     _t = db.NhietDo;
-  //     temperature.textContent = `${Math.round(db.NhietDo*100)/100} ᵒC`;
-  //
-  //     _h = db.DoAm;
-  //     humidity.textContent = `${db.DoAm} %`;
-  //
-  //     _p = db.PumpIsWork;
-  //     if (db.PumpIsWork == 1) {
-  //       pump.style.background = 'green';
-  //     } else {
-  //       pump.style.background = 'red';
-  //     }
-  //     logData(Math.round(_t * 100) / 100, _h, _p);
-  //   });
   setTimeout(GetDB, 500);
 }
 
