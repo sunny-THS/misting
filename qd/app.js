@@ -18,6 +18,7 @@ function  app() {
 
 function logData(t, h, p) {
   fetch(`${LOG_URL}{"temperature": ${t}, "humidity": ${h}, "Pump": ${p}}`)
+  console.log(`${LOG_URL}{"temperature": ${t}, "humidity": ${h}, "Pump": ${p}}`);
 }
 
 function GetDB() {
