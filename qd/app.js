@@ -11,32 +11,32 @@ const database = firebase.database();
 
 app();
 
-function app() {
+function  app() {
   GetDB();
   setTimeout(getIPAddress, 500);
 }
 
 function logData(t, h, p) {
-  fetch("https://script.google.com/macros/s/AKfycbwEMg3BHMVn7-_5cdoS6ExQTisCtotJUuXQv1_7kHiVlHMfqNc/exec?data={\"temperature\":" +t+ ",\"humidity\":" +h+ ",\"Pump" +p+ "}");
+  fetch(`${LOG_URL}{"temperature":${t},"humidity":${h},"Pump":${p}}`);
   console.log(`${LOG_URL}{"temperature":${t},"humidity":${h},"Pump": ${p}}`);
 }
 
 function GetDB() {
-  firebase.database().ref().once('value').then(function(snapshot) {
-    console.log(snapshot.val());
-    _t = snapshot.val().ThongSo.NhietDo;
-    temperature.textContent = `${Math.round(_t*100)/100} ᵒC`;
+  fetch(API_URL)
+  .then(res => res.json())
+  .then(db => {
+    _t = db.NhietDo;
+    temperature.textContent = `${Math.round(db.NhietDo*100)/100} ᵒC`;
 
-    _h = snapshot.val().ThongSo.DoAm;
-    humidity.textContent = `${_h} %`;
+    _h = db.DoAm;
+    humidity.textContent = `${db.DoAm} %`;
 
-    _p = snapshot.val().ThongSo.PumpIsWork;
-    if (_p == 1) {
+    _p = db.PumpIsWork;
+    if(db.PumpIsWork == 1) {
       pump.style.background = 'green';
-    } else {
+    }else {
       pump.style.background = 'red';
     }
-    logData(Math.round(_t * 100) / 100, _h, _p);
   });
   setTimeout(GetDB, 500);
 }
