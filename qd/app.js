@@ -24,13 +24,13 @@ function logData(t, h, p) {
 function GetDB() {
   firebase.database().ref().once('value').then(function(snapshot) {
     console.log(snapshot.val());
-    _t = snapshot.val().NhietDo;
+    _t = snapshot.val()..ThongSo.NhietDo;
     temperature.textContent = `${Math.round(_t*100)/100} ᵒC`;
 
-    _h = snapshot.val().DoAm;
+    _h = snapshot.val()..ThongSo.DoAm;
     humidity.textContent = `${_h} %`;
 
-    _p = snapshot.val().PumpIsWork;
+    _p = snapshot.val()..ThongSo.PumpIsWork;
     if (_p == 1) {
       pump.style.background = 'green';
     } else {
