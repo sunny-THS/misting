@@ -23,7 +23,7 @@ function logData(t, h, p) {
 
 function GetDB() {
   firebase.database().ref().once('value').then(function(snapshot) {
-    console.log(snapshot);
+    console.log(snapshot.val());
   });
   // fetch(API_URL)
   //   .then(res => res.json())
