@@ -7,11 +7,11 @@ const pump = document.querySelector('.pump');
 
 var _t, _h, _p, ip;
 
-// const database = firebase.database();
+const database = firebase.database();
 
 app();
 
-function  app() {
+function app() {
   GetDB();
   setTimeout(getIPAddress, 500);
 }
@@ -22,23 +22,26 @@ function logData(t, h, p) {
 }
 
 function GetDB() {
-  fetch(API_URL)
-  .then(res => res.json())
-  .then(db => {
-    _t = db.NhietDo;
-    temperature.textContent = `${Math.round(db.NhietDo*100)/100} ᵒC`;
-
-    _h = db.DoAm;
-    humidity.textContent = `${db.DoAm} %`;
-
-    _p = db.PumpIsWork;
-    if(db.PumpIsWork == 1) {
-      pump.style.background = 'green';
-    }else {
-      pump.style.background = 'red';
-    }
-    logData(Math.round(_t*100)/100, _h, _p);
+  firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+    console.log(snapshot);
   });
+  // fetch(API_URL)
+  //   .then(res => res.json())
+  //   .then(db => {
+  //     _t = db.NhietDo;
+  //     temperature.textContent = `${Math.round(db.NhietDo*100)/100} ᵒC`;
+  //
+  //     _h = db.DoAm;
+  //     humidity.textContent = `${db.DoAm} %`;
+  //
+  //     _p = db.PumpIsWork;
+  //     if (db.PumpIsWork == 1) {
+  //       pump.style.background = 'green';
+  //     } else {
+  //       pump.style.background = 'red';
+  //     }
+  //     logData(Math.round(_t * 100) / 100, _h, _p);
+  //   });
   setTimeout(GetDB, 500);
 }
 

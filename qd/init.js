@@ -1,13 +1,12 @@
-// const firebaseConfig = {
-//     apiKey: "AIzaSyCGIfZiN6ffCFgjiKrR21mD8gpphub3MmQ",
-//     authDomain: "misting-acb22.firebaseapp.com",
-//     databaseURL: "https://misting-acb22.firebaseio.com",
-//     projectId: "misting-acb22",
-//     storageBucket: "misting-acb22.appspot.com",
-//     messagingSenderId: "70694252046",
-//     appId: "1:70694252046:web:2d080109eb5b1101c4d65f",
-//     measurementId: "G-8Y0XK4YE4Y"
-//   };
-//   // Initialize Firebase
-//   firebase.initializeApp(firebaseConfig);
-//   firebase.analytics();
+var firebaseConfig = {
+    apiKey: "AIzaSyC7jKxM36imQKIhdkysgKz2q0TLrJU6WeM",
+    authDomain: "fir-9d177.firebaseapp.com",
+    databaseURL: "https://fir-9d177.firebaseio.com",
+    projectId: "fir-9d177",
+    storageBucket: "fir-9d177.appspot.com",
+    messagingSenderId: "489905185602",
+    appId: "1:489905185602:web:6f649466ab0aa851"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
