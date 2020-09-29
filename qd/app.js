@@ -17,7 +17,7 @@ function  app() {
 }
 
 function logData(t, h, p) {
-  fetch(`${LOG_URL}{"temperature":${t},"humidity":${h},"Pump":${p}}`)
+  fetch(`${LOG_URL}{"temperature":${t},"humidity":${h},"Pump":${p}}`);
   console.log(`${LOG_URL}{"temperature":${t},"humidity":${h},"Pump": ${p}}`);
 }
 
@@ -37,8 +37,8 @@ function GetDB() {
     }else {
       pump.style.background = 'red';
     }
+    logData(Math.round(_t*100)/100, _h, _p);
   });
-  // logData(Math.round(_t*100)/100, _h, _p);
   setTimeout(GetDB, 500);
 }
 
