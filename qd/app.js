@@ -1,4 +1,5 @@
 const API_URL = 'https://fir-9d177.firebaseio.com/ThongSo.json?&auh=YA2HldfmtXM9ZtNtAz5yetMTgxFpd8Gu2Dx8seta';
+const LOG_URL = 'https://script.google.com/macros/s/AKfycbwEMg3BHMVn7-_5cdoS6ExQTisCtotJUuXQv1_7kHiVlHMfqNc/exec?data=';
 
 const temperature = document.querySelector('#_t');
 const humidity = document.querySelector('#_h');
@@ -6,10 +7,18 @@ const pump = document.querySelector('.pump');
 
 var _t, _h, _p, ip;
 
-const database = firebase.database();
+// const database = firebase.database();
 
-setTimeout(getIPAddress, 500);
-GetDB();
+app();
+
+function  app() {
+  GetDB();
+  setTimeout(getIPAddress, 500);
+}
+
+function logData(t, h, p) {
+  fetch(`${LOG_URL}{"temperature": ${t}, "humidity": ${h}, "Pump": ${p}}`)
+}
 
 function GetDB() {
   fetch(API_URL)
@@ -28,6 +37,7 @@ function GetDB() {
       pump.style.background = 'red';
     }
   });
+  logData(_t, _h, _p);
   setTimeout(GetDB, 500);
 }
 
