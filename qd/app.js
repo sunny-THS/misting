@@ -22,7 +22,7 @@ function logData(t, h, p) {
 }
 
 function GetDB() {
-  firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+  firebase.database().ref().once('value').then(function(snapshot) {
     console.log(snapshot);
   });
   // fetch(API_URL)
