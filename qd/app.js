@@ -25,13 +25,13 @@ function GetDB() {
   firebase.database().ref().once('value').then(function(snapshot) {
     console.log(snapshot.val());
     _t = snapshot.val().NhietDo;
-    temperature.textContent = `${Math.round(db.NhietDo*100)/100} ᵒC`;
+    temperature.textContent = `${Math.round(_t*100)/100} ᵒC`;
 
     _h = snapshot.val().DoAm;
-    humidity.textContent = `${db.DoAm} %`;
+    humidity.textContent = `${_h} %`;
 
     _p = snapshot.val().PumpIsWork;
-    if (db.PumpIsWork == 1) {
+    if (_p == 1) {
       pump.style.background = 'green';
     } else {
       pump.style.background = 'red';
