@@ -17,8 +17,15 @@ function app() {
 }
 
 function logData(t, h, p) {
-  fetch(`${LOG_URL}{"temperature":${t},"humidity":${h},"Pump":${p}}`);
-  console.log(`${LOG_URL}{"temperature":${t},"humidity":${h},"Pump": ${p}}`);
+  var settings = {
+    "url": "https://script.google.com/macros/s/AKfycbwEMg3BHMVn7-_5cdoS6ExQTisCtotJUuXQv1_7kHiVlHMfqNc/exec?data={\"temperature\":40, \"humidity\": 70, \"Pump\": \"off\"}",
+    "method": "GET",
+    "timeout": 0,
+  };
+
+  $.ajax(settings).done(function(response) {
+    console.log(response);
+  });
 }
 
 function GetDB() {
