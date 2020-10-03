@@ -26,7 +26,7 @@ function logData({
     redirect: 'follow'
   };
 
-  fetch("https://script.google.com/macros/s/AKfycbwEMg3BHMVn7-_5cdoS6ExQTisCtotJUuXQv1_7kHiVlHMfqNc/exec", requestOptions)
+  fetch(LOG_URL, requestOptions)
     .catch(handleErr);
 }
 
