@@ -63,28 +63,25 @@ function handleErr(err) {
   return resp;
 }
 
-function getIPAddress() {
-  fetch(API_URL)
-    .then(res => res.json())
-    .then(db => {
-      let scores = db.IP;
-      let devices = Object.keys(scores);
-      devices.forEach(device => {
-        const div = document.querySelector('._IP');
+async function getIPAddress() {
+  let db = await (await fetch(API_URL).catch(handleErr)).json();
+  let scores = db.IP;
+  let devices = Object.keys(scores);
+  devices.forEach(device => {
+    const div = document.querySelector('._IP');
 
-        const name = document.createElement('h2');
-        name.textContent = `${scores[device].name}: `;
+    const name = document.createElement('h2');
+    name.textContent = `${scores[device].name}: `;
 
-        const ip = document.createElement('a');
-        ip.href = `http://${scores[device].val}/`;
-        ip.textContent = `${scores[device].val}`;
-        ip.target = '_blank';
+    const ip = document.createElement('a');
+    ip.href = `http://${scores[device].val}/`;
+    ip.textContent = `${scores[device].val}`;
+    ip.target = '_blank';
 
-        const br = document.createElement('br')
+    const br = document.createElement('br')
 
-        div.appendChild(name);
-        div.appendChild(ip);
-        div.appendChild(br);
-      });
-    });
+    div.appendChild(name);
+    div.appendChild(ip);
+    div.appendChild(br);
+  });
 }
