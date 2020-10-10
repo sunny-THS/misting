@@ -38,7 +38,7 @@ async function GetDB() {
     p: data.PumpIsWork
   };
   await returnData(thp_);
-  await logData(thp_);
+  // await logData(thp_);
   // console.log(thp_);
   setTimeout(GetDB, 500);
 }
